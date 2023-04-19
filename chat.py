@@ -2,6 +2,8 @@
 
 import sys
 import pygame
+
+from button import Button
 from settings import Settings
 
 class GigaChat:
@@ -23,6 +25,9 @@ class GigaChat:
         self.settings.screen_height = self.screen.get_rect().height
 
         pygame.display.set_caption("GigaChat")
+
+        self.button = Button(self, 70, 70, 'q')
+
 
 
     def run_game(self):
@@ -48,6 +53,8 @@ class GigaChat:
         '''Обновляет изображения на экране и отображает новый экран'''
 
         self.screen.fill(self.settings.bg_color)
+
+        self.button.draw_button()
         
         pygame.display.flip()
 
