@@ -3,6 +3,9 @@ import pygame
 
 from button import Button
 from settings import Settings
+from output import Output
+from output import Char
+
 
 
 class GigaChat:
@@ -30,6 +33,8 @@ class GigaChat:
 
         # Создание экземпляров классов
         self.button = Button(self, 60, 60, 'q')
+        self.output = Output(self)
+
 
 
 
@@ -73,6 +78,8 @@ class GigaChat:
         self.screen.fill(self.settings.bg_color)
 
         self.button.draw_button()
+        self.output.draw_line()
+
         
         pygame.display.flip()
 

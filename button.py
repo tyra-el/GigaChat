@@ -1,7 +1,5 @@
 import pygame.font
 
-from settings import Settings
-
 
 class Button:
     '''Класс для создания кнопки'''
@@ -9,7 +7,7 @@ class Button:
     def __init__(self, gc_game, width, height, char):
         '''Инициализирует атрибуты кнопки'''
 
-        self.settings = Settings()
+        self.settings = gc_game.settings
 
         # Задаём размеры экрана
         self.screen = gc_game.screen
@@ -31,10 +29,6 @@ class Button:
         self.char_rect.center = self.rect.center
 
     def draw_button(self):
-
-        # Отображение пустой кнопки и вывод сообщения
+        # Отображение кнопки
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.char, self.char_rect)
-
-    def change_color(self):
-        pass
