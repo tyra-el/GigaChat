@@ -1,10 +1,9 @@
-'''Программа по обучению печати'''
-
 import sys
 import pygame
 
 from button import Button
 from settings import Settings
+
 
 class GigaChat:
     '''Класс для управления ресурсами и поведением игры'''
@@ -13,20 +12,24 @@ class GigaChat:
         '''Инициализирует и создаёт игровые ресурсы'''
 
         pygame.init()
+
+        # Создание экземпляра класса настроек
         self.settings = Settings()
-            
+        
+        # Задаём размеры экрана
         if self.settings.fullscreen is False:
             self.screen = pygame.display.set_mode(
                 (self.settings.screen_width, self.settings.screen_height))
         else:
             self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            self.settings.screen_width = self.screen.get_rect().width
+            self.settings.screen_height = self.screen.get_rect().height
 
-        self.settings.screen_width = self.screen.get_rect().width
-        self.settings.screen_height = self.screen.get_rect().height
-
+        # Текст в названии приложения
         pygame.display.set_caption("GigaChat")
 
-        self.button = Button(self, 70, 70, 'q')
+        # Создание экземпляров классов
+        self.button = Button(self, 60, 60, 'q')
 
 
 
@@ -47,6 +50,21 @@ class GigaChat:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
+
+
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_q:
+            self.button.button_color = self.settings.button_color_2
+
+
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_q:
+            self.button.button_color = self.settings.button_color_1
+
 
 
     def _update_screen(self):
