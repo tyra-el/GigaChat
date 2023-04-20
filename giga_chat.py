@@ -1,10 +1,10 @@
 import sys
-import pygame
+import pygame as pg
 
 from button import Button
 from settings import Settings
-from output import Output
-from output import Char
+from input import InputBox
+# from input import Char
 
 
 
@@ -14,27 +14,28 @@ class GigaChat:
     def __init__(self):
         '''Инициализирует и создаёт игровые ресурсы'''
 
-        pygame.init()
+        pg.init()
+        self.clock = pg.time.Clock()
 
         # Создание экземпляра класса настроек
         self.settings = Settings()
         
         # Задаём размеры экрана
         if self.settings.fullscreen is False:
-            self.screen = pygame.display.set_mode(
+            self.screen = pg.display.set_mode(
                 (self.settings.screen_width, self.settings.screen_height))
         else:
-            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
             self.settings.screen_width = self.screen.get_rect().width
             self.settings.screen_height = self.screen.get_rect().height
 
         # Текст в названии приложения
-        pygame.display.set_caption("GigaChat")
+        pg.display.set_caption("GigaChat")
 
         # Создание экземпляров классов
         self.button = Button(self, 60, 60, 'q')
-        self.output = Output(self)
-
+        self.input = InputBox(self, 50, 50, 240, 51)
+        # self.outscreen = OutScreen(self)
 
 
 
@@ -52,23 +53,33 @@ class GigaChat:
     def _check_events(self):
         '''Обрабатывает нажатия клавиш и события мыши'''
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
                 sys.exit()
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pg.KEYDOWN:
                 self._check_keydown_events(event)
-            elif event.type == pygame.KEYUP:
+                print(self.input.text)
+            elif event.type == pg.KEYUP:
                 self._check_keyup_events(event)
+            
+            self.input.handle_event(event)
 
 
     def _check_keydown_events(self, event):
-        if event.key == pygame.K_q:
+        if event.key == pg.K_q:
             self.button.button_color = self.settings.button_color_2
+            self.keydown_flag = True
 
 
     def _check_keyup_events(self, event):
-        if event.key == pygame.K_q:
+        if event.key == pg.K_q:
             self.button.button_color = self.settings.button_color_1
+            self.keydown_flag = False
+
+
+    def _printing_chars(self):
+        if self.keydown_flag == True:
+            print('q')
 
 
 
@@ -78,10 +89,12 @@ class GigaChat:
         self.screen.fill(self.settings.bg_color)
 
         self.button.draw_button()
-        self.output.draw_line()
 
-        
-        pygame.display.flip()
+        self.input.update()
+        self.input.draw()
+
+        pg.display.flip()
+        self.clock.tick(30)
 
 
 

@@ -1,3 +1,5 @@
+import pygame as pg
+
 class Settings:
     '''Класс для хранения настроек игры'''
 
@@ -10,5 +12,11 @@ class Settings:
         self.bg_color = (70, 70, 70)
 
         # Цвет кнопки
-        self.button_color_1 = (110, 210, 110)
-        self.button_color_2 = (210, 110, 110)
+        self.button_color_1 = (200, 255, 200)
+        self.button_color_2 = (110, 210, 110)
+        self.button_color_3 = (210, 110, 110)
+
+        # Настройки окна ввода текста
+        self.COLOR_INACTIVE = (200, 240, 200)
+        self.COLOR_ACTIVE = (110, 210, 110)
+        self.FONT = pg.font.SysFont('isocpeur', 48)
