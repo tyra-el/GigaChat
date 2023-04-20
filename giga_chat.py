@@ -35,8 +35,7 @@ class GigaChat:
         self.button = Button(self, 60, 60, 'q')
         self.task = TaskBox(self, 0, 0, self.settings.screen_width - 100, 51)
         self.input = InputBox(self, 0, 0, self.settings.screen_width - 100, 51)
-        # self.outscreen = OutScreen(self)
-
+        self.task.read_txt()
 
 
     def run_game(self):
@@ -47,7 +46,6 @@ class GigaChat:
             self._check_events()
 
             self._update_screen()
-
 
 
     def _check_events(self):
@@ -80,7 +78,6 @@ class GigaChat:
     def _printing_chars(self):
         if self.keydown_flag == True:
             print('q')
-
 
 
     def _update_screen(self):

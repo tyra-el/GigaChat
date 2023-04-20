@@ -26,6 +26,7 @@ class InputBox:
 
         self.active = False
 
+
     def handle_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
 
@@ -56,11 +57,13 @@ class InputBox:
                 # Re-render the text.
                 self.txt_surface = self.settings.FONT.render(self.text, True, self.color)
 
+
     # def update(self):
     #     # Увеличение ширины бокса, если ширина текста его превысит
     #     if self.rect.right < self.screen_rect.right - 50:
     #         width = max(200, self.txt_surface.get_width()+10)
     #         self.rect.w = width
+
 
     def draw(self):
         # Blit the text.
