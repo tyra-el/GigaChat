@@ -4,22 +4,22 @@ import pygame as pg
 class InputBox:
     '''Класс окна ввода текста'''
 
-    def __init__(self, gc_game, x, y, w, h, text=''):
+    def __init__(self, gc_game, text=''):
 
-        self.settings = gc_game.settings
+        self.se = gc_game.settings
 
         # Задаём размеры экрана
         self.screen = gc_game.screen
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(x, y, w, h)
+        self.rect = pg.Rect(0, 0, self.se.w, self.se.h)
         self.rect.center = self.screen_rect.center
-        self.rect.top = self.screen_rect.top + 50 + 51 + 50
+        self.rect.top = self.screen_rect.top + 50 + 51 + 100
 
         # Определение цветов и шрифта
-        self.color = self.settings.COLOR_INACTIVE
-        self.txt_surface = self.settings.FONT.render(text, True, self.color)
+        self.color = self.se.COLOR_INACTIVE
+        self.txt_surface = self.se.FONT.render(text, True, self.color)
 
         # Переменная со строкой текста
         self.text = text
@@ -40,9 +40,9 @@ class InputBox:
 
             # Изменение цвета выбранной рамки
             if self.active:
-                self.color = self.settings.COLOR_ACTIVE
+                self.color = self.se.COLOR_ACTIVE
             else:
-                self.color = self.settings.COLOR_INACTIVE
+                self.color = self.se.COLOR_INACTIVE
 
         if event.type == pg.KEYDOWN:
             if self.active:
@@ -55,7 +55,7 @@ class InputBox:
                     self.text += event.unicode
 
                 # Re-render the text.
-                self.txt_surface = self.settings.FONT.render(self.text, True, self.color)
+                self.txt_surface = self.se.FONT.render(self.text, True, self.color)
 
 
     # def update(self):

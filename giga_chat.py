@@ -5,6 +5,7 @@ from button import Button
 from settings import Settings
 from input import InputBox
 from task import TaskBox
+from score import Score
 
 
 class GigaChat:
@@ -33,8 +34,10 @@ class GigaChat:
 
         # Создание экземпляров классов
         self.button = Button(self, 60, 60, 'q')
-        self.task = TaskBox(self, 0, 0, self.settings.screen_width - 100, 51)
-        self.input = InputBox(self, 0, 0, self.settings.screen_width - 100, 51)
+        self.task = TaskBox(self)
+        self.input = InputBox(self)
+        self.score = Score(self)
+
         self.task.read_txt()
 
 
@@ -93,6 +96,9 @@ class GigaChat:
 
         # Отображение рамки и заданного текста
         self.task.draw()
+
+        # Отображение рамки и счёта
+        self.score.draw()
 
         pg.display.flip()
         self.clock.tick(30)

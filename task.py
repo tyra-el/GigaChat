@@ -4,7 +4,7 @@ import pygame as pg
 class TaskBox:
     '''Класс с заданием для переписывания'''
 
-    def __init__(self, gc_game, x, y, w, h, text=''):
+    def __init__(self, gc_game, text=''):
         
         self.se = gc_game.settings
 
@@ -13,9 +13,9 @@ class TaskBox:
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(x, y, w, h)
+        self.rect = pg.Rect(0, 0, self.se.w, self.se.h)
         self.rect.center = self.screen_rect.center
-        self.rect.top = self.screen_rect.top + 50
+        self.rect.top = self.screen_rect.top + 100
 
         # Определение цветов и шрифта
         self.color = self.se.COLOR_INACTIVE

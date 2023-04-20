@@ -23,7 +23,7 @@ class Button:
 
         # Вставка текста внутрь кнопки
         self.char_color = (50, 50, 50)
-        self.font = pygame.font.SysFont('isocpeur', 48)
+        self.font = self.settings.FONT
         self.char = self.font.render(char, True, self.char_color)
         self.char_rect = self.char.get_rect()
         self.char_rect.center = self.rect.center

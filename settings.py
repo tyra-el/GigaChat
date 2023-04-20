@@ -16,7 +16,15 @@ class Settings:
         self.button_color_2 = (110, 210, 110)
         self.button_color_3 = (210, 110, 110)
 
-        # Настройки окна ввода текста
+        # Настройки окна ввода текста, заданий
         self.COLOR_INACTIVE = (200, 240, 200)
         self.COLOR_ACTIVE = (110, 210, 110)
         self.FONT = pg.font.SysFont('isocpeur', 48)
+
+        self.w = self.screen_width - 100
+        self.h = 51
+
+        # Настройки счёта
+        self.w1 = 200
+        self.h1 = 35
+        self.font2 = pg.font.SysFont('isocpeur', 34)
