@@ -1,5 +1,4 @@
 import pygame as pg
-from settings import Settings
 
 
 class InputBox:
@@ -7,29 +6,38 @@ class InputBox:
 
     def __init__(self, gc_game, x, y, w, h, text=''):
 
+        self.settings = gc_game.settings
+
+        # Задаём размеры экрана
         self.screen = gc_game.screen
         self.screen_rect = self.screen.get_rect()
 
-        self.settings = Settings()
-
+        # Построение объектов rect бокса, выравнивание по центру экрана
         self.rect = pg.Rect(x, y, w, h)
+        self.rect.center = self.screen_rect.center
+        self.rect.top = self.screen_rect.top + 50
+
+        # Определение цветов и шрифта
         self.color = self.settings.COLOR_INACTIVE
-        self.text = text
         self.txt_surface = self.settings.FONT.render(text, True, self.color)
+
+        # Переменная со строкой текста
+        self.text = text
+
         self.active = False
 
     def handle_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
 
-            # If the user clicked on the input_box rect.
+            # Если пользователь кликнет на input_box rect
             if self.rect.collidepoint(event.pos):
 
-                # Toggle the active variable.
+                # Флаг активируется
                 self.active = not self.active
             else:
                 self.active = False
 
-            # Change the current color of the input box.
+            # Изменение цвета выбранной рамки
             if self.active:
                 self.color = self.settings.COLOR_ACTIVE
             else:
@@ -48,10 +56,11 @@ class InputBox:
                 # Re-render the text.
                 self.txt_surface = self.settings.FONT.render(self.text, True, self.color)
 
-    def update(self):
-        # Resize the box if the text is too long.
-        width = max(200, self.txt_surface.get_width()+10)
-        self.rect.w = width
+    # def update(self):
+    #     # Увеличение ширины бокса, если ширина текста его превысит
+    #     if self.rect.right < self.screen_rect.right - 50:
+    #         width = max(200, self.txt_surface.get_width()+10)
+    #         self.rect.w = width
 
     def draw(self):
         # Blit the text.

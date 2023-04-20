@@ -4,8 +4,6 @@ import pygame as pg
 from button import Button
 from settings import Settings
 from input import InputBox
-# from input import Char
-
 
 
 class GigaChat:
@@ -34,7 +32,7 @@ class GigaChat:
 
         # Создание экземпляров классов
         self.button = Button(self, 60, 60, 'q')
-        self.input = InputBox(self, 50, 50, 240, 51)
+        self.input = InputBox(self, 0, 0, self.settings.screen_width - 100, 51)
         # self.outscreen = OutScreen(self)
 
 
@@ -90,7 +88,7 @@ class GigaChat:
 
         self.button.draw_button()
 
-        self.input.update()
+        # self.input.update()
         self.input.draw()
 
         pg.display.flip()
