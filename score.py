@@ -4,7 +4,7 @@ import pygame as pg
 class Score:
     '''Класс окна сёта'''
 
-    def __init__(self, gc_game, text='Score: 500'):
+    def __init__(self, gc_game):
 
         self.se = gc_game.settings
 
@@ -17,12 +17,25 @@ class Score:
         self.rect.center = self.screen_rect.center
         self.rect.top = self.screen_rect.top + 15
 
+        # Переменная со строкой текста
+        self.txt = 'Score: '
+        self.score = 0
+        self.text = self.txt + str(self.score)
+
         # Определение цветов и шрифта
         self.color = self.se.COLOR_ACTIVE
-        self.txt_surface = self.se.font2.render(text, True, self.color)
+        self.txt_surface = self.se.font2.render(self.text, True, self.color)
 
-        # Переменная со строкой текста
-        self.text = text
+
+    def counting(self, task, input):
+        if task == input:
+            self.score += len(task)
+            self.text = self.txt + str(self.score)
+            self.txt_surface = self.se.font2.render(self.text, True, self.color)
+        else:
+            self.score -= len(task)
+            self.text = self.txt + str(self.score)
+            self.txt_surface = self.se.font2.render(self.text, True, self.color)
 
 
     def draw(self):

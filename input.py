@@ -7,6 +7,8 @@ class InputBox:
     def __init__(self, gc_game, text=''):
 
         self.se = gc_game.settings
+        self.score = gc_game.score
+        self.task = gc_game.task
 
         # Задаём размеры экрана
         self.screen = gc_game.screen
@@ -25,7 +27,8 @@ class InputBox:
         self.text = text
 
         self.active = False
-
+        self.dbl1 = False
+        self.dbl2 = False
 
     def handle_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
@@ -39,20 +42,30 @@ class InputBox:
                 self.active = False
 
             # Изменение цвета выбранной рамки
-            if self.active:
-                self.color = self.se.COLOR_ACTIVE
-            else:
-                self.color = self.se.COLOR_INACTIVE
+        if self.active:
+            self.color = self.se.COLOR_ACTIVE
+        else:
+            self.color = self.se.COLOR_INACTIVE
 
         if event.type == pg.KEYDOWN:
             if self.active:
-                if event.key == pg.K_RETURN:
-                    # print(self.text)
-                    self.text = ''
-                elif event.key == pg.K_BACKSPACE:
+                if event.key == pg.K_BACKSPACE:
                     self.text = self.text[:-1]
+                    self.dbl1 = True
+                elif event.key == pg.K_RETURN:
+                    self.score.counting(self.task.text, self.text)
+                elif event.key == pg.K_ESCAPE:
+                    self.active = False
                 else:
                     self.text += event.unicode
+                if event.key == pg.K_RCTRL:
+                    self.dbl2 = True
+
+                if self.dbl1 and self.dbl2:
+                    # print(self.text)
+                    self.text = ''
+                    self.dbl1, self.dbl2 = False, False
+
 
                 # Re-render the text.
                 self.txt_surface = self.se.FONT.render(self.text, True, self.color)

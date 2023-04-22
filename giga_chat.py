@@ -33,10 +33,11 @@ class GigaChat:
         pg.display.set_caption("GigaChat")
 
         # Создание экземпляров классов
+        self.score = Score(self)
         self.button = Button(self, 60, 60, 'q')
         self.task = TaskBox(self)
         self.input = InputBox(self)
-        self.score = Score(self)
+        
 
         self.task.read_txt()
 
