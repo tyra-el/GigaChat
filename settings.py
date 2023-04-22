@@ -16,7 +16,7 @@ class Settings:
         self.button_color_2 = (110, 210, 110)
         self.button_color_3 = (210, 110, 110)
 
-        self.k_w = 970
+        self.k_w = 945
         self.k_h = 340
 
         # Настройки окна ввода текста, заданий

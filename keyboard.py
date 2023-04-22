@@ -61,13 +61,13 @@ class Keyboard:
         self.tab.char_rect.center = self.tab.rect.center
 
         # CapsLock
-        self.cl = Button(self.screen, 100, 'CL')
+        self.cl = Button(self.screen, 100, 'CpsL')
         self.cl.rect.left = self.rect.left + 10
         self.cl.rect.top = self.tab.rect.bottom + 5
         self.cl.char_rect.center = self.cl.rect.center
 
         # Enter
-        self.enter = Button(self.screen, 100, 'Entr')
+        self.enter = Button(self.screen, 105, 'Entr')
         self.enter.rect.right = self.rect.right - 10
         self.enter.rect.top = self.tab.rect.bottom + 5
         self.enter.char_rect.center = self.enter.rect.center
@@ -85,14 +85,60 @@ class Keyboard:
         self.rshift.char_rect.center = self.rshift.rect.center
 
         # Space
-        self.space = Button(self.screen, 360, '')
-        self.space.rect.left = self.rect.left + 200
+        self.space = Button(self.screen, 390, '')
+        self.space.rect.left = self.rect.left + 230
         self.space.rect.top = self.lshift.rect.bottom + 5
         self.space.char_rect.center = self.space.rect.center
 
 
         self.keys = {
-            'K_BACKQUOTE': ''
+            'K_BACKQUOTE':['`', self.se.button_color_2, self.rect.left + 10, self.rect.top + 10],
+            'K_1':['1', self.se.button_color_2, self.rect.left + 75, self.rect.top + 10],
+            'K_2':['2', self.se.button_color_2, self.rect.left + 75 + 65, self.rect.top + 10],
+            'K_3':['3', self.se.button_color_2, self.rect.left + 75 + 130, self.rect.top + 10],
+            'K_4':['4', self.se.button_color_2, self.rect.left + 75 + 195, self.rect.top + 10],
+            'K_5':['5', self.se.button_color_2, self.rect.left + 75 + 260, self.rect.top + 10],
+            'K_6':['6', self.se.button_color_2, self.rect.left + 75 + 325, self.rect.top + 10],
+            'K_7':['7', self.se.button_color_2, self.rect.left + 75 + 390, self.rect.top + 10],
+            'K_8':['8', self.se.button_color_2, self.rect.left + 75 + 455, self.rect.top + 10],
+            'K_9':['9', self.se.button_color_2, self.rect.left + 75 + 520, self.rect.top + 10],
+            'K_0':['0', self.se.button_color_2, self.rect.left + 75 + 585, self.rect.top + 10],
+            'K_MINUS':['-', self.se.button_color_2, self.rect.left + 75 + 650, self.rect.top + 10],
+            'K_EQUALS':['=', self.se.button_color_2, self.rect.left + 75 + 715, self.rect.top + 10],
+            'K_q':['Q', self.se.button_color_2, self.rect.left + 95, self.rect.top + 75],
+            'K_w':['W', self.se.button_color_2, self.rect.left + 95 + 65, self.rect.top + 75],
+            'K_e':['E', self.se.button_color_2, self.rect.left + 95 + 130, self.rect.top + 75],
+            'K_r':['R', self.se.button_color_2, self.rect.left + 95 + 195, self.rect.top + 75],
+            'K_t':['T', self.se.button_color_2, self.rect.left + 95 + 260, self.rect.top + 75],
+            'K_y':['Y', self.se.button_color_2, self.rect.left + 95 + 325, self.rect.top + 75],
+            'K_u':['U', self.se.button_color_2, self.rect.left + 95 + 390, self.rect.top + 75],
+            'K_i':['I', self.se.button_color_2, self.rect.left + 95 + 455, self.rect.top + 75],
+            'K_o':['O', self.se.button_color_2, self.rect.left + 95 + 520, self.rect.top + 75],
+            'K_p':['P', self.se.button_color_2, self.rect.left + 95 + 585, self.rect.top + 75],
+            'K_LEFTBRACKET':['[', self.se.button_color_2, self.rect.left + 95 + 650, self.rect.top + 75],
+            'K_RIGHTBRACKET':[']', self.se.button_color_2, self.rect.left + 95 + 715, self.rect.top + 75],
+            'K_BACKSLASH':['\\', self.se.button_color_2, self.rect.left + 95 + 780, self.rect.top + 75],
+            'K_a':['A', self.se.button_color_2, self.rect.left + 115, self.rect.top + 140],
+            'K_s':['S', self.se.button_color_2, self.rect.left + 115 + 65, self.rect.top + 140],
+            'K_d':['D', self.se.button_color_2, self.rect.left + 115 + 130, self.rect.top + 140],
+            'K_f':['F', self.se.button_color_2, self.rect.left + 115 + 195, self.rect.top + 140],
+            'K_g':['G', self.se.button_color_2, self.rect.left + 115 + 260, self.rect.top + 140],
+            'K_h':['H', self.se.button_color_2, self.rect.left + 115 + 325, self.rect.top + 140],
+            'K_j':['J', self.se.button_color_2, self.rect.left + 115 + 390, self.rect.top + 140],
+            'K_k':['K', self.se.button_color_2, self.rect.left + 115 + 455, self.rect.top + 140],
+            'K_l':['L', self.se.button_color_2, self.rect.left + 115 + 520, self.rect.top + 140],
+            'K_SEMICOLON':[';', self.se.button_color_2, self.rect.left + 115 + 585, self.rect.top + 140],
+            'K_QUOTE':["'", self.se.button_color_2, self.rect.left + 115 + 650, self.rect.top + 140],
+            'K_z':['Z', self.se.button_color_2, self.rect.left + 135, self.rect.top + 205],
+            'K_x':['X', self.se.button_color_2, self.rect.left + 135 + 65, self.rect.top + 205],
+            'K_c':['C', self.se.button_color_2, self.rect.left + 135 + 130, self.rect.top + 205],
+            'K_v':['V', self.se.button_color_2, self.rect.left + 135 + 195, self.rect.top + 205],
+            'K_b':['B', self.se.button_color_2, self.rect.left + 135 + 260, self.rect.top + 205],
+            'K_n':['N', self.se.button_color_2, self.rect.left + 135 + 325, self.rect.top + 205],
+            'K_m':['M', self.se.button_color_2, self.rect.left + 135 + 390, self.rect.top + 205],
+            'K_COMMA':[',', self.se.button_color_2, self.rect.left + 135 + 455, self.rect.top + 205],
+            'K_PERIOD':['.', self.se.button_color_2, self.rect.left + 135 + 520, self.rect.top + 205],
+            'K_SLASH':['/', self.se.button_color_2, self.rect.left + 135 + 585, self.rect.top + 205],
         }
         
 
@@ -110,10 +156,10 @@ class Keyboard:
         self.space.draw()
         self.bs.draw()
 
-        # for i in self.keys:
-        #     self.button = Button(self.screen, 60, i)
-        #     self.button.rect.top = self.rect.top + 10
-        #     self.button.rect.left = self.left
-        #     self.button.char_rect.center = self.button.rect.center
+        for key in self.keys.values():
+            self.button = Button(self.screen, 60, key[0])
+            self.button.rect.left = key[2]
+            self.button.rect.top = key[3]
+            self.button.char_rect.center = self.button.rect.center
 
-        #     self.button.draw()
+            self.button.draw()
