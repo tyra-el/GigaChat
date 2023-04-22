@@ -71,21 +71,13 @@ class GigaChat:
 
 
     def _check_keydown_events(self, event):
-        if event.key == pg.K_q:
-            # self.button.button_color = self.settings.button_color_2
-            self.keydown_flag = True
-
+        for i in self.kb.keys.items():
+            if event.key == pg.K_q:
+                pass
 
     def _check_keyup_events(self, event):
         if event.key == pg.K_q:
-            # self.button.button_color = self.settings.button_color_1
-            self.keydown_flag = False
-
-
-    def _printing_chars(self):
-        if self.keydown_flag == True:
-            print('q')
-
+            pass
 
     def _update_screen(self):
         '''Обновляет изображения на экране и отображает новый экран'''
