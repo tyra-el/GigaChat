@@ -6,7 +6,7 @@ class InputBox:
 
     def __init__(self, gc_game, text=''):
 
-        self.se = gc_game.settings
+        self.se = gc_game.se
         self.score = gc_game.score
         self.task = gc_game.task
 
@@ -20,7 +20,7 @@ class InputBox:
         self.rect.top = self.screen_rect.top + 50 + 51 + 100
 
         # Определение цветов и шрифта
-        self.color = self.se.COLOR_INACTIVE
+        self.color = self.se.lgreen
         self.txt_surface = self.se.FONT.render(text, True, self.color)
 
         # Переменная со строкой текста
@@ -43,9 +43,9 @@ class InputBox:
 
             # Изменение цвета выбранной рамки
         if self.active:
-            self.color = self.se.COLOR_ACTIVE
+            self.color = self.se.dgreen
         else:
-            self.color = self.se.COLOR_INACTIVE
+            self.color = self.se.lgreen
 
         if event.type == pg.KEYDOWN:
             if self.active:
@@ -83,33 +83,5 @@ class InputBox:
         self.screen.blit(self.txt_surface, (self.rect.x+10, self.rect.y+9))
         # Blit the rect.
         pg.draw.rect(self.screen, self.color, self.rect, 3, border_radius=10)
-
-
-# class Char:
-#     '''Класс, отображающий выходной текст'''
-
-#     def __init__(self, gc_game):
-#         '''Инициализирует атрибуты выходного текста'''
-
-#         self.output = gc_game.output
-
-#         # Задаём размеры экрана
-#         self.screen = gc_game.screen
-#         self.screen_rect = self.screen.get_rect()
-
-#         # Вставка текста внутрь строки
-#         self.char_color = (200, 240, 200)
-#         self.font = pg.font.SysFont('isocpeur', 48)
-#         self.char = self.font.render('q', True, self.char_color)
-#         self.char_rect = self.char.get_rect()
-#         self.char_rect.center = self.output.rect.center
-
-#     def chat(self):
-#         if self.chat_act:
-#             self.screen.blit(self.char, self.char_rect)
-
-
-
-
 
 

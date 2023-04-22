@@ -12,9 +12,10 @@ class Settings:
         self.bg_color = (70, 70, 70)
 
         # Цвет клавиш и клавиатуры
-        self.button_color_1 = (200, 255, 200)
-        self.button_color_2 = (110, 210, 110)
-        self.button_color_3 = (210, 110, 110)
+        self.white = (230, 255, 230)
+        self.lgreen = (190, 255, 190)
+        self.dgreen = (110, 210, 110)
+        self.red = (210, 170, 170)
 
         self.k_w = 945
         self.k_h = 340

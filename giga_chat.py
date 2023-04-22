@@ -3,7 +3,6 @@ import pygame as pg
 
 
 from keyboard import Keyboard
-from keyboard import Button
 from settings import Settings
 from input import InputBox
 from task import TaskBox
@@ -20,16 +19,16 @@ class GigaChat:
         self.clock = pg.time.Clock()
 
         # Создание экземпляра класса настроек
-        self.settings = Settings()
+        self.se = Settings()
         
         # Задаём размеры экрана
-        if self.settings.fullscreen is False:
+        if self.se.fullscreen is False:
             self.screen = pg.display.set_mode(
-                (self.settings.screen_width, self.settings.screen_height))
+                (self.se.screen_width, self.se.screen_height))
         else:
             self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
-            self.settings.screen_width = self.screen.get_rect().width
-            self.settings.screen_height = self.screen.get_rect().height
+            self.se.screen_width = self.screen.get_rect().width
+            self.se.screen_height = self.screen.get_rect().height
 
         # Текст в названии приложения
         pg.display.set_caption("GigaChat")
@@ -63,26 +62,32 @@ class GigaChat:
                 sys.exit()
             elif event.type == pg.KEYDOWN:
                 self._check_keydown_events(event)
-                print(self.input.text)
+                
             elif event.type == pg.KEYUP:
                 self._check_keyup_events(event)
-            
+                print(self.input.text)
             self.input.handle_event(event)
 
 
     def _check_keydown_events(self, event):
-        for i in self.kb.keys.items():
-            if event.key == pg.K_q:
-                pass
+        for button, value in self.kb.keys.items():
+            if event.key == button:
+                value[2], value[3] = value[3], value[2]
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
+                value[0], value[1] = value[1], value[0]
 
     def _check_keyup_events(self, event):
-        if event.key == pg.K_q:
-            pass
+        for button, value in self.kb.keys.items():
+            if event.key == button:
+                value[2], value[3] = value[3], value[2]
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
+                value[0], value[1] = value[1], value[0]
+
 
     def _update_screen(self):
         '''Обновляет изображения на экране и отображает новый экран'''
 
-        self.screen.fill(self.settings.bg_color)
+        self.screen.fill(self.se.bg_color)
 
         # Отображение клавиатуры и клавиш
         self.kb.draw()

@@ -6,7 +6,7 @@ class Score:
 
     def __init__(self, gc_game):
 
-        self.se = gc_game.settings
+        self.se = gc_game.se
 
         # Задаём размеры экрана
         self.screen = gc_game.screen
@@ -23,7 +23,7 @@ class Score:
         self.text = self.txt + str(self.score)
 
         # Определение цветов и шрифта
-        self.color = self.se.COLOR_ACTIVE
+        self.color = self.se.lgreen
         self.txt_surface = self.se.font2.render(self.text, True, self.color)
 
 

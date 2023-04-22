@@ -6,7 +6,7 @@ class TaskBox:
 
     def __init__(self, gc_game, text=''):
         
-        self.se = gc_game.settings
+        self.se = gc_game.se
 
         # Задаём размеры экрана
         self.screen = gc_game.screen
@@ -18,7 +18,7 @@ class TaskBox:
         self.rect.top = self.screen_rect.top + 100
 
         # Определение цветов и шрифта
-        self.color = self.se.COLOR_INACTIVE
+        self.color = self.se.lgreen
         self.txt_surface = self.se.FONT.render(text, True, self.color)
 
         # Переменная со строкой текста
