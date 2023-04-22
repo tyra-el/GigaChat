@@ -72,13 +72,13 @@ class GigaChat:
 
     def _check_keydown_events(self, event):
         if event.key == pg.K_q:
-            self.button.button_color = self.settings.button_color_2
+            # self.button.button_color = self.settings.button_color_2
             self.keydown_flag = True
 
 
     def _check_keyup_events(self, event):
         if event.key == pg.K_q:
-            self.button.button_color = self.settings.button_color_1
+            # self.button.button_color = self.settings.button_color_1
             self.keydown_flag = False
 
 

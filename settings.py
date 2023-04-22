@@ -16,8 +16,8 @@ class Settings:
         self.button_color_2 = (110, 210, 110)
         self.button_color_3 = (210, 110, 110)
 
-        self.k_w = 700
-        self.k_h = 300
+        self.k_w = 970
+        self.k_h = 340
 
         # Настройки окна ввода текста, заданий
         self.COLOR_INACTIVE = (200, 240, 200)
@@ -31,6 +31,3 @@ class Settings:
         self.w1 = 200
         self.h1 = 35
         self.font2 = pg.font.SysFont('isocpeur', 34)
-
-        # Настройки клавиатуры
-
