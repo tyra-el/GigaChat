@@ -38,7 +38,7 @@ class TaskBox:
         # Blit the text.
         self.screen.blit(self.txt_surface, (self.rect.x+10, self.rect.y+9))
         # Blit the rect.
-        pg.draw.rect(self.screen, self.color, self.rect, 4, border_radius=10)
+        pg.draw.rect(self.screen, self.color, self.rect, 3, border_radius=10)
 
     
 

@@ -39,7 +39,6 @@ class GigaChat:
         self.task = TaskBox(self)
         self.input = InputBox(self)
 
-        self.button = Button(self, 60, 60, 'q')
         self.kb = Keyboard(self)
         
 
@@ -95,7 +94,6 @@ class GigaChat:
 
         # Отображение клавиатуры и клавиш
         self.kb.draw()
-        self.button.draw()
 
         # Отображение рамки и входного текста
         self.input.draw()
