@@ -8,13 +8,16 @@ class Settings:
         # Параметры экрана
         self.fullscreen = False
         self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_height = 700
         self.bg_color = (70, 70, 70)
 
-        # Цвет кнопки
+        # Цвет клавиш и клавиатуры
         self.button_color_1 = (200, 255, 200)
         self.button_color_2 = (110, 210, 110)
         self.button_color_3 = (210, 110, 110)
+
+        self.k_w = 700
+        self.k_h = 300
 
         # Настройки окна ввода текста, заданий
         self.COLOR_INACTIVE = (200, 240, 200)
@@ -28,3 +31,6 @@ class Settings:
         self.w1 = 200
         self.h1 = 35
         self.font2 = pg.font.SysFont('isocpeur', 34)
+
+        # Настройки клавиатуры
+

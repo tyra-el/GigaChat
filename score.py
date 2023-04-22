@@ -40,6 +40,6 @@ class Score:
 
     def draw(self):
         # Blit the text.
-        self.screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+6))
+        self.screen.blit(self.txt_surface, (self.rect.x+7, self.rect.y+6))
         # Blit the rect.
-        pg.draw.rect(self.screen, self.color, self.rect, 4)
+        pg.draw.rect(self.screen, self.color, self.rect, 4, border_radius=10)

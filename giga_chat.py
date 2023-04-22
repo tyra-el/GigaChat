@@ -1,7 +1,9 @@
 import sys
 import pygame as pg
 
-from button import Button
+
+from keyboard import Keyboard
+from keyboard import Button
 from settings import Settings
 from input import InputBox
 from task import TaskBox
@@ -34,9 +36,11 @@ class GigaChat:
 
         # Создание экземпляров классов
         self.score = Score(self)
-        self.button = Button(self, 60, 60, 'q')
         self.task = TaskBox(self)
         self.input = InputBox(self)
+
+        self.button = Button(self, 60, 60, 'q')
+        self.kb = Keyboard(self)
         
 
         self.task.read_txt()
@@ -89,10 +93,11 @@ class GigaChat:
 
         self.screen.fill(self.settings.bg_color)
 
-        self.button.draw_button()
+        # Отображение клавиатуры и клавиш
+        self.kb.draw()
+        self.button.draw()
 
         # Отображение рамки и входного текста
-        # self.input.update()
         self.input.draw()
 
         # Отображение рамки и заданного текста
