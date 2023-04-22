@@ -11,24 +11,26 @@ class Settings:
         self.screen_height = 700
         self.bg_color = (70, 70, 70)
 
-        # Цвет клавиш и клавиатуры
+        # Цвета клавиш
         self.white = (230, 255, 230)
         self.lgreen = (190, 255, 190)
         self.dgreen = (110, 210, 110)
         self.red = (210, 170, 170)
 
+        # Клавиатура
         self.k_w = 945
         self.k_h = 340
+        self.gray = (105, 105, 105)
 
-        # Настройки окна ввода текста, заданий
-        self.COLOR_INACTIVE = (200, 240, 200)
-        self.COLOR_ACTIVE = (110, 210, 110)
-        self.FONT = pg.font.SysFont('isocpeur', 48)
-
+        # Настройки окон ввода текста, заданий
         self.w = self.screen_width - 100
         self.h = 51
 
         # Настройки счёта
-        self.w1 = 200
-        self.h1 = 35
-        self.font2 = pg.font.SysFont('isocpeur', 34)
+        self.w1 = 175
+        self.h1 = 51
+
+        # Шрифт
+        self.FONT = pg.font.SysFont('isocpeur', 48)
+        self.FONT2 = pg.font.SysFont('isocpeur', 60)
+

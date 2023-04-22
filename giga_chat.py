@@ -5,7 +5,8 @@ import pygame as pg
 from keyboard import Keyboard
 from settings import Settings
 from input import InputBox
-from task import TaskBox
+from menu import TaskBox
+from menu import Menu
 from score import Score
 
 
@@ -35,6 +36,8 @@ class GigaChat:
 
         # Создание экземпляров классов
         self.score = Score(self)
+        self.menu = Menu(self)
+
         self.task = TaskBox(self)
         self.input = InputBox(self)
 
@@ -66,7 +69,9 @@ class GigaChat:
             elif event.type == pg.KEYUP:
                 self._check_keyup_events(event)
                 print(self.input.text)
+
             self.input.handle_event(event)
+            self.menu.menu_event(event)
 
 
     def _check_keydown_events(self, event):
@@ -98,8 +103,10 @@ class GigaChat:
         # Отображение рамки и заданного текста
         self.task.draw()
 
-        # Отображение рамки и счёта
+        # Отображение счёта и значка меню
+        self.menu.draw()
         self.score.draw()
+        self.score.update()
 
         pg.display.flip()
         self.clock.tick(30)

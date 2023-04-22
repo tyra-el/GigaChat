@@ -44,7 +44,7 @@ class Keyboard:
         self.rect.top = self.screen_rect.top + 50 + 51 + 100 + 50 + 51
 
         # Определение цветов
-        self.color = (105, 105, 105)
+        self.color = self.se.gray
 
         # Создание нестандартных клавиш
 
@@ -146,7 +146,7 @@ class Keyboard:
 
     def draw(self):
         # Blit the rect
-        pg.draw.rect(self.screen, self.color, self.rect, border_radius=10)
+        pg.draw.rect(self.screen, self.color, self.rect, border_radius=20)
         
         self.tab.draw()
         self.cl.draw()
