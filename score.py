@@ -15,7 +15,7 @@ class Analyse:
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(0, 0, 580, 610)
+        self.rect = pg.Rect(0, 0, 520, 610)
         self.rect.left = self.screen_rect.left + 10
         self.rect.top = self.screen_rect.top + 80
 

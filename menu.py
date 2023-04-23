@@ -1,4 +1,6 @@
 import pygame as pg
+import glob
+import os
 
 from settings import Settings
 
@@ -29,9 +31,9 @@ class TaskBox:
 
 
     def read_txt(self):
-        with open('task.txt') as self.file:
+        with open('text_files/task.txt') as self.file:
             self.text = self.file.read()
-
+        
         self.txt_surface = self.se.FONT.render(self.text, True, self.color)
         print(self.text)
 
@@ -55,27 +57,34 @@ class TaskBar:
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(0, 0, 580, 610)
+        self.rect = pg.Rect(0, 0, 520, 610)
         self.rect.right = self.screen_rect.right - 10
         self.rect.top = self.screen_rect.top + 80
 
-        # Переменная со строкой текста
-        self.txt = ''
+        # Переменная со списком имён файлов
+        self.text = os.listdir('text_files')
+
+        self.x = 0
+
 
         # Определение цветов и шрифта
         self.color = self.se.white
         self.color1 = self.se.gray
-        self.txt_surface = self.se.FONT2.render(self.txt, True, self.color)
-        self.char_rect = self.txt_surface.get_rect()
-        self.char_rect.center = self.rect.center
-
 
     def draw(self):
-        # Blit the text.
-        self.screen.blit(self.txt_surface, (self.rect.x+10, self.rect.y+9))
         # Blit the rect.
         pg.draw.rect(self.screen, self.color, self.rect, border_radius=10)
         pg.draw.rect(self.screen, self.color1, self.rect, 5, border_radius=10)
+
+        for name in self.text:
+            self.txt_surface = self.se.FONT0.render(name, True, self.color1)
+            self.txt_rect = self.txt_surface.get_rect()
+            self.txt_rect.left = self.rect.left + 15
+            self.txt_rect.top = self.rect.top + 10 + self.x
+            self.x += 30
+            # Blit the text.
+            self.screen.blit(self.txt_surface, self.txt_rect)
+        self.x = 0
 
 
 class Menu:

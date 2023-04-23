@@ -33,6 +33,7 @@ class Settings:
         self.h1 = 51
 
         # Шрифт
+        self.FONT0 = pg.font.SysFont('isocpeur', 30)
         self.FONT = pg.font.SysFont('isocpeur', 48)
         self.FONT2 = pg.font.SysFont('isocpeur', 60)
 
