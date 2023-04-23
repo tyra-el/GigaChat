@@ -1,4 +1,5 @@
 import pygame as pg
+import os
 
 class Settings:
     '''Класс для хранения настроек игры'''
@@ -27,6 +28,15 @@ class Settings:
         # Настройки окон ввода текста, заданий
         self.w = self.screen_width - 100
         self.h = 51
+
+        self.task_act = False
+
+        # Создание словаря со списком файлов из папки
+        self.files_list = os.listdir('text_files')
+        self.files_dict = {}
+        for filename in self.files_list:
+            self.files_dict[filename] = [False, self.gray, self.dgreen]
+
 
         # Настройки счёта
         self.w1 = 175

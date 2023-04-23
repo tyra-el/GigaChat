@@ -42,9 +42,7 @@ class GigaChat:
         self.input = InputBox(self)
 
         self.kb = Keyboard(self)
-        
 
-        self.task.read_txt()
 
 
     def run_game(self):
@@ -108,6 +106,9 @@ class GigaChat:
 
         # Отображение рамки и заданного текста
         self.task.draw()
+
+        if self.se.task_act:
+            self.task.read_txt()
 
         # Отображение счёта аналитики
         self.score.draw()

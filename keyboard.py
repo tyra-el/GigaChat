@@ -41,7 +41,7 @@ class Keyboard:
         # Построение объектов rect бокса, выравнивание по центру экрана
         self.rect = pg.Rect(0, 0, self.se.k_w, self.se.k_h)
         self.rect.center = self.screen_rect.center
-        self.rect.top = self.screen_rect.top + 280
+        self.rect.top = self.screen_rect.top + 300
 
         # Определение цветов
         self.color = self.se.gray

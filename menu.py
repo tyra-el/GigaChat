@@ -1,8 +1,5 @@
 import pygame as pg
-import glob
 import os
-
-from settings import Settings
 
 
 class TaskBox:
@@ -28,17 +25,15 @@ class TaskBox:
         # Переменная со строкой текста
         self.text = text
         self.filenames = os.listdir('text_files')
-        self.file = ''
 
 
     def read_txt(self):
-
-        with open('text_files/name.txt') as self.file:
-            self.text = self.file.read()
+        for file, value in self.se.files_dict.items():
+            if value[0]:
+                with open(f'text_files/{file}') as self.file:
+                    self.text = self.file.read()
         
         self.txt_surface = self.se.FONT.render(self.text, True, self.color)
-        print(self.text)
-
 
     def draw(self):
         # Blit the text.
@@ -50,9 +45,9 @@ class TaskBox:
 class TaskBar:
     '''Класс окна заданий'''
 
-    def __init__(self, screen):
+    def __init__(self, screen, se):
 
-        self.se = Settings()
+        self.se = se
 
         # Задаём размеры экрана
         self.screen = screen
@@ -65,22 +60,23 @@ class TaskBar:
 
         self.active = False
 
-        # Переменная со списком имён файлов
+        # Определение цветов и шрифта
+        self.color = self.se.white
+        self.color1 = self.se.gray
+
+
         self.text = os.listdir('text_files')
 
         self.x = 0
 
-        # Определение цветов и шрифта
-        self.color = self.se.white
-        self.color1 = self.se.gray
 
     def draw(self):
         # Blit the rect.
         pg.draw.rect(self.screen, self.color, self.rect, border_radius=10)
         pg.draw.rect(self.screen, self.color1, self.rect, 5, border_radius=10)
 
-        for name in self.text:
-            self.txt_surface = self.se.FONT0.render(name, True, self.color1)
+        for file, value in self.se.files_dict.items():
+            self.txt_surface = self.se.FONT0.render(file, True, value[1])
             self.txt_rect = self.txt_surface.get_rect()
             self.txt_rect.left = self.rect.left + 15
             self.txt_rect.top = self.rect.top + 10 + self.x
@@ -89,28 +85,31 @@ class TaskBar:
             self.screen.blit(self.txt_surface, self.txt_rect)
         self.x = 0
     
+
     def task_event(self, event):
         '''Выбирает один из нескольких файлов нажатием мыши'''
 
-        if event.type == pg.MOUSEBUTTONDOWN:
-            # Если пользователь кликнет на файл, активируется флаг
-            if self.rect.collidepoint(event.pos):
-                self.active = not self.active
-            else:
-                self.active = False
-
-        if self.active:
-            self.color1 = self.se.dgreen
-        else:
-            self.color1 = self.se.gray
-
-        for name in self.text:
-            self.txt_surface = self.se.FONT0.render(name, True, self.color1)
+        for file, value in self.se.files_dict.items():
+            self.txt_surface = self.se.FONT0.render(file, True, value[1])
             self.txt_rect = self.txt_surface.get_rect()
             self.txt_rect.left = self.rect.left + 15
             self.txt_rect.top = self.rect.top + 10 + self.x
             self.x += 30
+
+            if event.type == pg.MOUSEBUTTONDOWN:
+                # Если пользователь кликнет на файл, активируется флаг
+                if self.txt_rect.collidepoint(event.pos):
+                    self.active = not self.active
+                    value[0] = not value[0]
+                    value[1], value[2] = value[2], value[1]
+                    self.se.task_act = not self.se.task_act
+                # else:
+                #     self.active = False
+                #     value[0] = False
+                #     value[1], value[2] = value[2], value[1]
         self.x = 0
+
+        print(self.se.files_dict)
 
 
 
@@ -141,7 +140,7 @@ class Menu:
 
         self.active = False
 
-        self.task_bar = TaskBar(self.screen)
+        self.task_bar = TaskBar(self.screen, self.se)
 
 
     def menu_event(self, event):
