@@ -27,11 +27,13 @@ class TaskBox:
 
         # Переменная со строкой текста
         self.text = text
+        self.filenames = os.listdir('text_files')
         self.file = ''
 
 
     def read_txt(self):
-        with open('text_files/task.txt') as self.file:
+
+        with open('text_files/name.txt') as self.file:
             self.text = self.file.read()
         
         self.txt_surface = self.se.FONT.render(self.text, True, self.color)
@@ -57,15 +59,16 @@ class TaskBar:
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(0, 0, 520, 610)
+        self.rect = pg.Rect(0, 0, 400, 610)
         self.rect.right = self.screen_rect.right - 10
         self.rect.top = self.screen_rect.top + 80
+
+        self.active = False
 
         # Переменная со списком имён файлов
         self.text = os.listdir('text_files')
 
         self.x = 0
-
 
         # Определение цветов и шрифта
         self.color = self.se.white
@@ -85,6 +88,30 @@ class TaskBar:
             # Blit the text.
             self.screen.blit(self.txt_surface, self.txt_rect)
         self.x = 0
+    
+    def task_event(self, event):
+        '''Выбирает один из нескольких файлов нажатием мыши'''
+
+        if event.type == pg.MOUSEBUTTONDOWN:
+            # Если пользователь кликнет на файл, активируется флаг
+            if self.rect.collidepoint(event.pos):
+                self.active = not self.active
+            else:
+                self.active = False
+
+        if self.active:
+            self.color1 = self.se.dgreen
+        else:
+            self.color1 = self.se.gray
+
+        for name in self.text:
+            self.txt_surface = self.se.FONT0.render(name, True, self.color1)
+            self.txt_rect = self.txt_surface.get_rect()
+            self.txt_rect.left = self.rect.left + 15
+            self.txt_rect.top = self.rect.top + 10 + self.x
+            self.x += 30
+        self.x = 0
+
 
 
 class Menu:
@@ -122,14 +149,14 @@ class Menu:
             # Если пользователь кликнет на menu, активируется флаг
             if self.rect.collidepoint(event.pos):
                 self.active = not self.active
-            else:
-                self.active = False
 
             # Изменение цвета выбранной рамки
         if self.active:
             self.color = self.se.dgreen
+            self.task_bar.task_event(event)
         else:
             self.color = self.se.lgreen
+
 
         self.txt_surface = self.se.FONT2.render(self.txt, True, self.color)
 

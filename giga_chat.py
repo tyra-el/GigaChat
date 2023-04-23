@@ -70,9 +70,10 @@ class GigaChat:
                 self._check_keyup_events(event)
                 print(self.input.text)
 
-            self.input.handle_event(event)
-            self.menu.menu_event(event)
             self.score.score_event(event)
+            self.menu.menu_event(event)
+            if (self.menu.active or self.score.active) == False:
+                self.input.handle_event(event)
 
 
     def _check_keydown_events(self, event):

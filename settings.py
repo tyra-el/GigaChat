@@ -17,7 +17,7 @@ class Settings:
         self.dgreen = (110, 210, 110)
         self.red = (210, 170, 170)
         self.gray = (105, 105, 105)
-        self.lgray = (200, 220, 200)
+        self.lgray = (150, 150, 150)
         self.dgray = (130, 150, 130)
 
         # Клавиатура

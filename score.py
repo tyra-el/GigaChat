@@ -15,7 +15,7 @@ class Analyse:
         self.screen_rect = self.screen.get_rect()
 
         # Построение объектов rect бокса, выравнивание по центру экрана
-        self.rect = pg.Rect(0, 0, 520, 610)
+        self.rect = pg.Rect(0, 0, 400, 610)
         self.rect.left = self.screen_rect.left + 10
         self.rect.top = self.screen_rect.top + 80
 
@@ -74,14 +74,13 @@ class Score:
             # Если пользователь кликнет на menu, активируется флаг
             if self.rect.collidepoint(event.pos):
                 self.active = not self.active
-            else:
-                self.active = False
 
             # Изменение цвета выбранной рамки
         if self.active:
             self.color = self.se.dgreen
         else:
             self.color = self.se.lgreen
+
 
         self.txt_surface = self.se.FONT.render(self.text, True, self.color)
 
