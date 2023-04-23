@@ -72,6 +72,7 @@ class GigaChat:
 
             self.input.handle_event(event)
             self.menu.menu_event(event)
+            self.score.score_event(event)
 
 
     def _check_keydown_events(self, event):
@@ -107,10 +108,13 @@ class GigaChat:
         # Отображение рамки и заданного текста
         self.task.draw()
 
-        # Отображение счёта и значка меню
-        self.menu.draw()
+        # Отображение счёта аналитики
         self.score.draw()
         self.score.update()
+
+        # Отображение меню и выбор заданий
+        self.menu.draw()
+
 
         pg.display.flip()
         self.clock.tick(30)

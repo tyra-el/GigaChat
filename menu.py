@@ -1,5 +1,7 @@
 import pygame as pg
 
+from settings import Settings
+
 
 class TaskBox:
     '''Класс с заданием для переписывания'''
@@ -44,7 +46,36 @@ class TaskBox:
 class TaskBar:
     '''Класс окна заданий'''
 
-    pass
+    def __init__(self, screen):
+
+        self.se = Settings()
+
+        # Задаём размеры экрана
+        self.screen = screen
+        self.screen_rect = self.screen.get_rect()
+
+        # Построение объектов rect бокса, выравнивание по центру экрана
+        self.rect = pg.Rect(0, 0, 580, 610)
+        self.rect.right = self.screen_rect.right - 10
+        self.rect.top = self.screen_rect.top + 80
+
+        # Переменная со строкой текста
+        self.txt = ''
+
+        # Определение цветов и шрифта
+        self.color = self.se.white
+        self.color1 = self.se.gray
+        self.txt_surface = self.se.FONT2.render(self.txt, True, self.color)
+        self.char_rect = self.txt_surface.get_rect()
+        self.char_rect.center = self.rect.center
+
+
+    def draw(self):
+        # Blit the text.
+        self.screen.blit(self.txt_surface, (self.rect.x+10, self.rect.y+9))
+        # Blit the rect.
+        pg.draw.rect(self.screen, self.color, self.rect, border_radius=10)
+        pg.draw.rect(self.screen, self.color1, self.rect, 5, border_radius=10)
 
 
 class Menu:
@@ -74,6 +105,8 @@ class Menu:
 
         self.active = False
 
+        self.task_bar = TaskBar(self.screen)
+
 
     def menu_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
@@ -97,3 +130,6 @@ class Menu:
         self.screen.blit(self.txt_surface, self.char_rect)
         # Blit the rect.
         pg.draw.rect(self.screen, self.color, self.rect, 3, border_radius=10)
+
+        if self.active:
+            self.task_bar.draw()
