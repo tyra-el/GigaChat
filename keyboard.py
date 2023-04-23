@@ -41,51 +41,52 @@ class Keyboard:
         # Построение объектов rect бокса, выравнивание по центру экрана
         self.rect = pg.Rect(0, 0, self.se.k_w, self.se.k_h)
         self.rect.center = self.screen_rect.center
-        self.rect.top = self.screen_rect.top + 50 + 51 + 100 + 50 + 51
+        self.rect.top = self.screen_rect.top + 280
 
         # Определение цветов
         self.color = self.se.gray
+        self.color1 = self.se.white
 
         # Создание нестандартных клавиш
 
         # Backspace
-        self.bs = Button(self.screen, 80, self.se.white, '<--')
+        self.bs = Button(self.screen, 80, self.color1, '<--')
         self.bs.rect.right = self.rect.right - 10
         self.bs.rect.top = self.rect.top + 10
         self.bs.char_rect.center = self.bs.rect.center
 
         # Tab
-        self.tab = Button(self.screen, 80, self.se.white, 'Tab')
+        self.tab = Button(self.screen, 80, self.color1, 'Tab')
         self.tab.rect.left = self.rect.left + 10
         self.tab.rect.top = self.bs.rect.bottom + 5
         self.tab.char_rect.center = self.tab.rect.center
 
         # CapsLock
-        self.cl = Button(self.screen, 100, self.se.white, 'CpsL')
+        self.cl = Button(self.screen, 100, self.color1, 'CpsL')
         self.cl.rect.left = self.rect.left + 10
         self.cl.rect.top = self.tab.rect.bottom + 5
         self.cl.char_rect.center = self.cl.rect.center
 
         # Enter
-        self.enter = Button(self.screen, 105, self.se.white, 'Entr')
+        self.enter = Button(self.screen, 105, self.color1, 'Entr')
         self.enter.rect.right = self.rect.right - 10
         self.enter.rect.top = self.tab.rect.bottom + 5
         self.enter.char_rect.center = self.enter.rect.center
 
         # LShift
-        self.lshift = Button(self.screen, 120, self.se.white, 'Shift')
+        self.lshift = Button(self.screen, 120, self.color1, 'Shift')
         self.lshift.rect.left = self.rect.left + 10
         self.lshift.rect.top = self.cl.rect.bottom + 5
         self.lshift.char_rect.center = self.lshift.rect.center
 
         # RShift
-        self.rshift = Button(self.screen, 150, self.se.white, 'Shift')
+        self.rshift = Button(self.screen, 150, self.color1, 'Shift')
         self.rshift.rect.right = self.rect.right - 10
         self.rshift.rect.top = self.cl.rect.bottom + 5
         self.rshift.char_rect.center = self.rshift.rect.center
 
         # Space
-        self.space = Button(self.screen, 390, self.se.white, '')
+        self.space = Button(self.screen, 390, self.color1, '')
         self.space.rect.left = self.rect.left + 230
         self.space.rect.top = self.lshift.rect.bottom + 5
         self.space.char_rect.center = self.space.rect.center

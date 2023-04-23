@@ -81,12 +81,16 @@ class GigaChat:
             if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 value[0], value[1] = value[1], value[0]
 
+
     def _check_keyup_events(self, event):
         for button, value in self.kb.keys.items():
             if event.key == button:
                 value[2], value[3] = value[3], value[2]
             if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 value[0], value[1] = value[1], value[0]
+        if event.key == pg.K_LSHIFT:
+            self.kb.color1 = self.se.white
+
 
 
     def _update_screen(self):

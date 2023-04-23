@@ -16,11 +16,12 @@ class Settings:
         self.lgreen = (190, 255, 190)
         self.dgreen = (110, 210, 110)
         self.red = (210, 170, 170)
+        self.gray = (105, 105, 105)
+        self.dgray = (130, 150, 130)
 
         # Клавиатура
         self.k_w = 945
         self.k_h = 340
-        self.gray = (105, 105, 105)
 
         # Настройки окон ввода текста, заданий
         self.w = self.screen_width - 100

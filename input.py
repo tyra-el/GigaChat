@@ -17,7 +17,7 @@ class InputBox:
         # Построение объектов rect бокса, выравнивание по центру экрана
         self.rect = pg.Rect(0, 0, self.se.w, self.se.h)
         self.rect.center = self.screen_rect.center
-        self.rect.top = self.screen_rect.top + 50 + 51 + 100
+        self.rect.top = self.screen_rect.top + 190
 
         # Определение цветов и шрифта
         self.color = self.se.lgreen
